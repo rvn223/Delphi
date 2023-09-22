@@ -12,7 +12,7 @@ var s1,s2 : shortstring;
     s5 :string;
     m1,m2 : tsa;
     m3 :tsa;
-    m4,m5 : array of byte;
+    m4,m5,m5_ : array of byte;
     m6 : array of array of array of byte;
     i, j, k : int32;
     eq:boolean;
@@ -63,27 +63,29 @@ randomize;
       end;
     if eq then writeln('m1 = m3 !') else writeln('m1 <> m3 !');
     //Добавляем динамический массив
-    write('Pause...') ; readln;
+    write('Проверка работы с динамическими массивами...') ; readln;
     setlength(m4,1000);
-    //m4:=m1; //syntax Error
-    setlength(m5,1100);
-    for i :=1 to 1000 do
+    for i :=1 to 999 do
       m4[i]:=random(256);
-  writeln('Adress din array (before copy): ',int32(@m4[1]),' ',int32(@m5[1]));
+    //m4:=m1; //syntax Error
     m5:=m4;
-  writeln('Adress din array (after copy): ',int32(@m4[1]),' ',int32(@m5[1]));
-  m5[0]:=0;
-  writeln('Adress din array (after m5[0]:=0): ',int32(@m4[1]),' ',int32(@m5[1]));
+    writeln('Adress din array (after copy): ',int32(@m4[0]),' ',int32(@m5[0]));
+    m5[0]:=0;
+    writeln('Adress din array (after m5[0]:=0): ',int32(@m4[0]),' ',int32(@m5[0]));
+    setlength(m5_,1000);
+    writeln('Adress din array (before copy): ',int32(@m4[0]),' ',int32(@m5_[0]));
+    m5_:=m4;
+    writeln('Adress din array (after copy): ',int32(@m4[0]),' ',int32(@m5_[0]));
   readln;
   eq:=true;
-  for i:=1 to 1000 do
+  for i:=1 to 999 do
     if m4[i]<>m5[i] then
       begin
       writeln('Not eq!');
       eq:=false;
       break;
       end;
-    if eq and (@m4[0]<>@m5[0]) then writeln('m4 = m5 !') else writeln('m4 <> m5 !');
+    if eq and (@m4[0]=@m5[0]) then writeln('m4 = m5 !') else writeln('m4 <> m5 !');
     m4:=nil;
     m5:=nil;
 // Многомерные массивы
