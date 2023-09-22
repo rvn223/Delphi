@@ -33,7 +33,7 @@ randomize;
   for I := 1  to length(s1) do
    if s1[i]<>s4[i] then
    begin
-        writeln('s1 <> s4');
+        writeln('s1 <> s4 (static strings)');
         break;
    end;
   //
@@ -45,24 +45,25 @@ randomize;
   for i:=1 to 1000 do
     if m1[i]<>m2[i] then
       begin
-      writeln('Not eq!');
+      writeln('Not static array eq!');
       eq:=false;
       break;
       end;
-    if eq then writeln('m1 = m2 !') else writeln('m1 <> m2 !');
+    if eq then writeln('static arrays: m1 = m2 !') else writeln('static arrays: m1 <> m2 !');
     //
     m3:=m1;
-    writeln('Adress stat arrays: ',int32(@m1[1]),' ',int32(@m3[1]));
+    writeln('Adress static arrays: ',int32(@m1[1]),' ',int32(@m3[1]));
   eq:=true;
   for i:=1 to 1000 do
     if m1[i]<>m3[i] then
       begin
-      writeln('Not eq!');
+      writeln('Not eq! m1<>m3');
       eq:=false;
       break;
       end;
     if eq then writeln('m1 = m3 !') else writeln('m1 <> m3 !');
     //Добавляем динамический массив
+    write('Pause...') ; readln;
     setlength(m4,1000);
     //m4:=m1; //syntax Error
     setlength(m5,1100);
