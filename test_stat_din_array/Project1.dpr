@@ -9,7 +9,7 @@ uses
 type tsa = array [1..1000] of byte;
 var s1,s2 : shortstring;
     s4: string[10];
-    s5 :string;
+    s5, s6 :string;
     m1,m2 : tsa;
     m3 :tsa;
     m4,m5,m5_ : array of byte;
@@ -74,7 +74,7 @@ randomize;
     writeln('Adress din array (after m5[0]:=0): ',int32(@m4[0]),' ',int32(@m5[0]));
     setlength(m5_,1000);
     writeln('Adress din array (before copy): ',int32(@m4[0]),' ',int32(@m5_[0]));
-    m5_:=m4;
+    m5_:=m4; // теперь указывают на один и тот же массив данных. ѕерезаписи нет
     writeln('Adress din array (after copy): ',int32(@m4[0]),' ',int32(@m5_[0]));
   readln;
   eq:=true;
@@ -88,6 +88,12 @@ randomize;
     if eq and (@m4[0]=@m5[0]) then writeln('m4 = m5 !') else writeln('m4 <> m5 !');
     m4:=nil;
     m5:=nil;
+    writeln('“естируем динамические строки ...');readln;
+    s5:='“естируем динамические строки s5, s6 ..';
+    s6:=s5;
+    writeln('Adress s5 s6 (after copy): ',int32(@s5[1]),' ',int32(@s6[1]));
+    writeln(s6);
+    readln;
 // ћногомерные массивы
 setlength(m6,10); // 1 мерный
 for i:=0 to 9 do
