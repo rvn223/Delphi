@@ -69,13 +69,15 @@ randomize;
       m4[i]:=random(256);
     //m4:=m1; //syntax Error
     m5:=m4;
-    writeln('Adress din array (after copy): ',int32(@m4[0]),' ',int32(@m5[0]));
-    m5[0]:=0;
-    writeln('Adress din array (after m5[0]:=0): ',int32(@m4[0]),' ',int32(@m5[0]));
+    writeln('Adress din array m4, m5 (after copy m5:=m4): ',int32(@m4[0]),' ',int32(@m5[0]));
+    m5[0]:=121;
+    writeln('Adress din array (after m5[0]:=121): ',int32(@m4[0]),' ',int32(@m5[0]));
     setlength(m5_,1000);
-    writeln('Adress din array (before copy): ',int32(@m4[0]),' ',int32(@m5_[0]));
+    writeln('Adress din array m4, m5_ (before copy): ',int32(@m4[0]),' ',int32(@m5_[0]));
     m5_:=m4; // теперь указывают на один и тот же массив данных. Перезаписи нет
     writeln('Adress din array (after copy): ',int32(@m4[0]),' ',int32(@m5_[0]));
+    m5_[0]:=123;
+    writeln('Adress din array (after m5_[0]:=123): ',int32(@m4[0]),' ',int32(@m5_[0]));
   readln;
   eq:=true;
   for i:=1 to 999 do
@@ -93,6 +95,8 @@ randomize;
     s6:=s5;
     writeln('Adress s5 s6 (after copy): ',int32(@s5[1]),' ',int32(@s6[1]));
     writeln(s6);
+    s5:=s1;
+    writeln(s5);
     readln;
 // Многомерные массивы
 setlength(m6,10); // 1 мерный
