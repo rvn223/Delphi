@@ -39,7 +39,7 @@ randomize;
   //
   for i :=1 to 1000 do
     m1[i]:=random(256);
-  m2:=m1;
+  m2:=m1;//copy
   writeln('Adress stat arrays: ',int32(@m1[1]),' ',int32(@m2[1]));
   eq:=true;
   for i:=1 to 1000 do
@@ -62,6 +62,7 @@ randomize;
       break;
       end;
     if eq then writeln('m1 = m3 !') else writeln('m1 <> m3 !');
+    write('Далее работаем с дин.массивом..');readln;
     //Добавляем динамический массив
     write('Проверка работы с динамическими массивами...') ; readln;
     setlength(m4,1000);
